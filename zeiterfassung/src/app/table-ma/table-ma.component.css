@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+}
+
+tr.mat-footer-row {
+    font-weight: bold;
+}
+
+.bearbeiten {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}

@@ -1,0 +1,17 @@
+<ng-container *ngIf="kunde && !edit">
+    <mat-card>
+        <mat-card-title>{{kunde.name}}</mat-card-title>
+
+        <mat-card-subtitle>Ansprechpartner: {{kunde.ansprechpartner}}</mat-card-subtitle>
+        <mat-card-subtitle>Telefon: {{kunde.telefon}}</mat-card-subtitle>
+        <mat-card-subtitle>Adresse: {{kunde.strasse + "" + kunde.hausnummer}}</mat-card-subtitle>
+        <mat-card-subtitle>{{kunde.plz + " "+ kunde.ort}}</mat-card-subtitle>
+        <mat-card-actions>
+            <button mat-raised-button color="link" (click)="editKunde()">bearbeiten</button>
+            <button mat-raised-button color="link" (click)="delKunde()">löschen</button>
+        </mat-card-actions>
+    </mat-card>
+</ng-container>
+
+
+<app-edit-kunde *ngIf="kunde && edit" [kunde]=kunde></app-edit-kunde>

@@ -1,0 +1,49 @@
+<div>
+    <h1>Zeit eingeben</h1>
+</div>
+<form class="example-form" [formGroup]="stundenzettelTag" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Kunde</mat-label>
+        <mat-select name="kunde" [(value)]="selected" formControlName="kunde">
+            <mat-option *ngFor="let kunde of kunden" [value]="kunde.idkunde">
+                {{kunde.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Datum</mat-label>
+        <input matInput type="date" formControlName="datum" [(ngModel)]="datum" (ngModelChange)="createDate()">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Uhr von</mat-label>
+        <input matInput type="time" formControlName="uhrVon" [(ngModel)]="uhrVon" (ngModelChange)="calcTime()">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Uhr bis</mat-label>
+        <input matInput type="time" formControlName="uhrBis" [(ngModel)]="uhrBis" (ngModelChange)="calcTime()">
+    </mat-form-field>
+
+
+    <mat-form-field appearance="fill">
+        <mat-label>Pause in Minuten</mat-label>
+        <input matInput type="text" formControlName="pause" [(ngModel)]="pause" (ngModelChange)="calcTime()">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Fahrzeit in Minuten</mat-label>
+        <input matInput type="number" formControlName="fahrzeit" placeholder="Minuten">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" style="width: 350px;" appearance="fill">
+        <mat-label>Arbeiten</mat-label>
+        <textarea matInput cdkTextareaAutosize cols="40" class="textarea" #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="4" formControlName="kommentar" placeholder="erledigte Arbeiten"></textarea>
+    </mat-form-field>
+
+
+    <button mat-raised-button type="submit" [disabled]="!stundenzettelTag.valid" color="primary">speichern</button>
+
+</form>

@@ -1,0 +1,134 @@
+<form class="example-form" [formGroup]="form">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Monat</mat-label>
+        <mat-select formControlName="month" name="month" (ngModelChange)="getTage()" [(value)]="selectedMonat">
+            <mat-option value="0">Alle</mat-option>
+            <mat-option *ngFor="let m of monate" [value]="m.value">
+                {{m.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Jahr</mat-label>
+        <mat-select formControlName="year" [(value)]="selectedJahr">
+            <mat-option value="2021">2021</mat-option>
+            <mat-option value="2022">2022</mat-option>
+            <mat-option value="2023">2023</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Tag</mat-label>
+        <mat-select formControlName="day" [(value)]="selectedTag" [disabled]="selectedMonat == '0'">
+            <mat-option value="0">Alle</mat-option>
+            <mat-option *ngFor="let in of counter(tageImMonat); let i = index" [value]="i+1">
+                {{i+1}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Kunde</mat-label>
+        <mat-select formControlName="kunde" name="kunde" [(value)]="selectedKunde">
+            <mat-option value="0">Alle</mat-option>
+            <mat-option *ngFor="let k of kunden" [value]="k.idkunde">
+                {{k.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Mitarbeiter</mat-label>
+        <mat-select formControlName="mitarbeiter" [(value)]="selectedMitarbeiter">
+            <mat-option value="0">Alle</mat-option>
+            <mat-option *ngFor="let m of mitarbeiter" [value]="m.idmitarbeiter">
+                {{m.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <button class="button" (click)="onSubmit()" mat-raised-button color="primary" [disabled]=form.invalid>anzeigen</button>
+
+</form>
+
+<div id="print-section">
+    <div class="head">
+        <!-- <div *ngIf="mitarbeiter != '0'">Mitarbeiter: {{stundenzettel[0].mName}}</div>
+        <div *ngIf="kunde != '0'">Kunde: {{stundenzettel[0].kName}}</div> -->
+        <div *ngIf="selectedTag != '0'">Datum: {{stundenzettel[0].datum | date: 'shortDate'}}</div>
+    </div>
+
+    <table mat-table matTableExporter [dataSource]="stundenzettel" matSort #exporter="matTableExporter" class="mat-elevation-z8">
+
+        <!-- Date Column -->
+        <ng-container matColumnDef="datum">
+            <th mat-header-cell *matHeaderCellDef> Datum </th>
+            <td mat-cell *matCellDef="let element"> {{element.datum | date : 'shortDate'}} </td>
+        </ng-container>
+
+        <!-- Position Column -->
+        <ng-container matColumnDef="mName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Mitarbeiter</th>
+            <td mat-cell *matCellDef="let element"> {{element.mName}} </td>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="kName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kunde </th>
+            <td mat-cell *matCellDef="let element"> {{element.kName}} </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="fahrzeit">
+            <th mat-header-cell *matHeaderCellDef> Fahrzeit </th>
+            <td mat-cell *matCellDef="let element"> {{element.fahrzeit}} </td>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="stunden">
+            <th mat-header-cell *matHeaderCellDef> Stunden </th>
+            <td mat-cell *matCellDef="let element"> {{element.stunden}}
+                <ng-container *ngIf="admin && edit">
+                    <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon" [value]="element.idstunden" (click)="editStunden(element.idstunden)">
+                <mat-icon>mode_edit</mat-icon>
+              </button>
+                    <button mat-icon-button color="accent" aria-label="Example icon button with a menu icon" [value]="element.idstunden" (click)="delete(element.idstunden)">
+                <mat-icon>delete</mat-icon>
+              </button>
+                </ng-container>
+            </td>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="kommentar">
+            <th mat-header-cell *matHeaderCellDef> Arbeiten </th>
+            <td mat-cell *matCellDef="let element"> {{element.kommentar}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="array"></tr>
+        <tr mat-row *matRowDef="let row; columns: array;"></tr>
+
+        <!-- Row shown when there is no matching data. -->
+        <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" colspan="4">No data matching the filter ""</td>
+        </tr>
+    </table>
+</div>
+
+<app-edit-stunden *ngIf="stundensatz && edit" (submitStundenzettel)="bearbeiten()" [stundensatz]="stundensatz"></app-edit-stunden>
+
+
+<div class="bearbeiten">
+    <button mat-raised-button (click)="bearbeiten()">Bearbeiten</button>
+
+</div>
+<div class="bearbeiten">
+    Tabelle exportieren:
+    <button mat-raised-button (click)="exporter.exportTable('xlsx', {fileName:'stundenzettel'})">Excel</button>
+    <!-- <button mat-raised-button (click)="exporter.exportTable('json', {fileName:'testdaten'})">json</button> -->
+    <button mat-raised-button (click)="exporter.exportTable('csv', {fileName:'stundenzettel'})">csv</button>
+    <button mat-raised-button (click)="exporter.exportTable('txt', {fileName:'stundenzettel'})">txt</button>
+
+</div>

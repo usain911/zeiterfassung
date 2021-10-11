@@ -1,0 +1,52 @@
+<form class="example-form" [formGroup]="stundeForm">
+    <mat-form-field class="example-full-width" appearance="fill">
+        <mat-label>Mitarbeiter: {{stundensatz.mitarbeiter.name}}</mat-label>
+        <input matInput disabled>
+    </mat-form-field>
+    <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>{{stundensatz.timestamp | date: 'short' }}</mat-label>
+            <input matInput disabled>
+        </mat-form-field>
+
+    </p>
+
+
+    <table class="example-full-width" cellspacing="0">
+        <tr>
+            <td>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Stunden</mat-label>
+                    <input matInput formControlName="stunden">
+                </mat-form-field>
+            </td>
+            <td>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Fahrzeit</mat-label>
+                    <input matInput formControlName="fahrzeit">
+                </mat-form-field>
+            </td>
+        </tr>
+    </table>
+
+    <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Datum</mat-label>
+            <input matInput formControlName="datum">
+        </mat-form-field>
+
+    </p>
+    <p>
+        <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Arbeiten</mat-label>
+            <textarea matInput formControlName="kommentar"></textarea>
+        </mat-form-field>
+
+    </p>
+
+</form>
+
+<div class="bearbeiten">
+    <button class="button" mat-raised-button color="warning" (click)="cancel()">abbrechen</button>
+    <button class="button" mat-raised-button color="warning" (click)="save()">speichern</button>
+</div>

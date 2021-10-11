@@ -1,0 +1,44 @@
+<h1>
+
+    Kunden ändern</h1>
+<form class="example-form" [formGroup]="kundeForm" (ngSubmit)="onSubmit()">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName=name>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Ansprechpartner</mat-label>
+        <input matInput formControlName="ansprechpartner">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Telefon</mat-label>
+        <input matInput formControlName="telefon">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Strasse</mat-label>
+        <input matInput formControlName="strasse">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Hausnummer</mat-label>
+        <input matInput formControlName="hausnummer">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>PLZ</mat-label>
+        <input matInput formControlName="plz">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Ort</mat-label>
+        <input matInput formControlName="ort">
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" [disabled]="!kundeForm.valid" color="primary">speichern</button>
+    <button mat-raised-button color="accent" ngclick="reset()">abbrechen</button>
+
+</form>

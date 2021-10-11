@@ -1,0 +1,17 @@
+<button *ngIf="admin && !alleMa" (click)="alleMa = !alleMa" mat-raised-button color="primary">zur Übersicht aller Mitarbeiter</button>
+<button *ngIf="admin && alleMa" (click)="alleMa = !alleMa" mat-raised-button color="primary">zu meiner Ansicht</button>
+
+
+
+
+<!-- normal -->
+<app-table *ngIf="admin && alleMa" [kunden]="kunden"></app-table>
+
+<!-- alternative -->
+<app-table-ma *ngIf="!alleMa" [kunden]="kunden"></app-table-ma>
+
+
+
+<div class="bearbeiten">
+    <button mat-raised-button color="primary" [printStyle]="{h1 : {'font-size': '1rem'}}" [useExistingCss]="true" printSectionId="print-section" ngxPrint>Drucken</button>
+</div>

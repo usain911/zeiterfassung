@@ -1,0 +1,54 @@
+<ng-container *ngIf="mitarbeiter">
+    <mat-card>
+        <mat-card-title>{{mitarbeiter.name}}</mat-card-title>
+
+        <mat-card-subtitle>{{mitarbeiter.login}}</mat-card-subtitle>
+        <mat-card-subtitle></mat-card-subtitle>
+
+        <mat-card-actions>
+            <button mat-raised-button color="link" (click)="editMitarbeiter()">bearbeiten</button>
+            <button mat-raised-button color="link" (click)="editPassword()">neues Passwort vergeben</button>
+            <button mat-raised-button color="link" (click)="delMitarbeiter()">löschen</button>
+        </mat-card-actions>
+    </mat-card>
+</ng-container>
+
+<ng-container *ngIf="newPassword">
+
+    <form class="example-form" [formGroup]="pwForm">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Neues Passwort</mat-label>
+            <input matInput type="password" formControlName=password>
+        </mat-form-field>
+
+    </form>
+    <button mat-raised-button color="warn" (click)=savepw()>speichern</button>
+</ng-container>
+
+<ng-container *ngIf="edit">
+
+    <form class="example-form" [formGroup]="maForm">
+
+        <mat-form-field appearance="fill">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName=name>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>Login</mat-label>
+            <input matInput formControlName=login>
+        </mat-form-field>
+
+        <mat-radio-group aria-label="Select an option" formControlName=rolle>
+            <mat-radio-button value="1">Erweiterte Rechte</mat-radio-button>
+            <mat-radio-button value="2">Standardrechte</mat-radio-button>
+        </mat-radio-group>
+
+
+    </form>
+
+    <button mat-raised-button class="button" type="submit" (click)="update()" [disabled]="!maForm.valid" color="primary">speichern</button>
+    <!-- <button mat-raised-button color="accent" ngclick="reset()">abbrechen</button> -->
+
+</ng-container>

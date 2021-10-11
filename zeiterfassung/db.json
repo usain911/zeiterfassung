@@ -1,0 +1,56 @@
+{
+  "kunden": [
+    {
+      "id":1,
+      "kundennummer": 1,
+      "name": "firma1",
+      "ansprechpartner": "",
+      "telefon": "",
+      "strasse": "",
+      "hausnummer":"",
+      "plz": 12345,
+      "ort":""
+    },
+    {
+      "id":2,
+      "kundennummer": 2,
+      "name": "firma2",
+      "ansprechpartner": "",
+      "telefon": "",
+      "strasse": "",
+      "hausnummer":"",
+      "plz": 12345,
+      "ort":""
+    }
+  ],
+  "stundenzettel": [
+   {
+      "id":1,
+      "kunde": "testkunde",
+      "stunden": 2,
+      "fahrzeit": 1,
+      "datum":"2012-04-23T18:25:43.511Z"
+    },
+     {
+      "id":2,
+       "kunde": "testkunde",
+      "stunden": 2,
+      "fahrzeit": 2,
+      "datum":"2012-04-23T18:25:43.511Z"
+    },
+     {
+      "id":3,
+       "kunde": "testkunde",
+      "stunden": 2,
+      "fahrzeit": 2,
+      "datum":""
+    }  
+  ],
+  "mitarbeiter": [ 
+	{
+	"id":1,
+	"name": "hans",
+	"login": "loginName",
+	"password": "123456789ABCDEF" }
+	]
+}

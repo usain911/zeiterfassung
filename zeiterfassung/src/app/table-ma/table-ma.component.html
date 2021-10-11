@@ -1,0 +1,83 @@
+<form class="example-form" [formGroup]="form">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Monat</mat-label>
+        <mat-select formControlName="month" name="month" (ngModelChange)="getTage()" [(value)]="selectedMonat">
+            <mat-option value="0">Alle</mat-option>
+            <mat-option *ngFor="let m of monate" [value]="m.value">
+                {{m.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Jahr</mat-label>
+        <mat-select formControlName="year" [(value)]="selectedJahr">
+            <mat-option value="2021">2021</mat-option>
+            <mat-option value="2022">2022</mat-option>
+            <mat-option value="2023">2023</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Tag</mat-label>
+        <mat-select formControlName="day" [(value)]="selectedTag" [disabled]="selectedMonat == '0'">
+            <mat-option value="0">Alle</mat-option>
+            <mat-option *ngFor="let in of counter(tageImMonat); let i = index" [value]="i+1">
+                {{i+1}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Kunde</mat-label>
+        <mat-select formControlName="kunde" name="kunde" [(value)]="selectedKunde">
+            <mat-option value="0">Alle</mat-option>
+            <mat-option *ngFor="let k of kunden" [value]="k.idkunde">
+                {{k.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <button class="button" (click)="zeigeStundenMa()" mat-raised-button color="primary" [disabled]=form.invalid>anzeigen</button>
+</form>
+
+<div id="print-section">
+    <ng-container *ngIf="stundenzettel">
+        <h2>Stundenzettel: </h2>
+    </ng-container>
+
+    <mat-table [dataSource]="stundenzettel" class="mat-elevation-z8">
+        <!-- Position Column -->
+        <ng-container matColumnDef="datum">
+            <mat-header-cell *matHeaderCellDef> Datum </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.datum | date: "shortDate"}} </mat-cell>
+        </ng-container>
+
+        <!-- Name Column -->
+        <ng-container matColumnDef="name">
+            <mat-header-cell *matHeaderCellDef> Kunde </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        </ng-container>
+
+        <!-- Symbol Column -->
+        <ng-container matColumnDef="fahrzeit">
+            <mat-header-cell *matHeaderCellDef> Fahrzeit in min. </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.fahrzeit}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="stunden">
+            <mat-header-cell *matHeaderCellDef> Stunden </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.stunden}} </mat-cell>
+        </ng-container>
+
+        <!-- Weight Column -->
+        <ng-container matColumnDef="kommentar">
+            <mat-header-cell *matHeaderCellDef> Arbeiten </mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.kommentar}} </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div>

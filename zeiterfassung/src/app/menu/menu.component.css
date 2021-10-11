@@ -1,0 +1,21 @@
+mat-menu {
+    margin-left: 30px;
+}
+
+.top {
+    background-color: rgb(172, 172, 172);
+}
+
+.menuicon {
+    margin-left: 30px;
+}
+
+.top {
+    margin-bottom: 20px;
+}
+
+.rechts {
+    position: right;
+    margin-right: 2rem;
+    float: right;
+}

@@ -1,0 +1,27 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.example-form {
+    width: 200px;
+    margin-bottom: 1rem;
+}
+
+button {
+    margin-top: 1rem;
+}
+
+.mat-radio-button~.mat-radio-button {
+    margin-left: 16px;
+    margin-bottom: 2rem;
+}
+
+mat-radio-button {
+    margin: 1rem;
+}
+
+.buttonreihe button {
+    margin: 1rem;
+}

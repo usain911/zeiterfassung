@@ -1,0 +1,48 @@
+<h1>Neuen Kunden anlegen</h1>
+<form class="example-form" [formGroup]="kundeForm">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName=name>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Ansprechpartner</mat-label>
+        <input matInput formControlName="ansprechpartner">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Telefon</mat-label>
+        <input matInput formControlName="telefon">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Strasse</mat-label>
+        <input matInput formControlName="strasse">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Hausnummer</mat-label>
+        <input matInput formControlName="hausnummer">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>PLZ</mat-label>
+        <input matInput placeholder="57250" formControlName="plz">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Ort</mat-label>
+        <input matInput formControlName="ort">
+    </mat-form-field>
+
+
+
+
+</form>
+<div class="buttonreihe">
+    <button mat-raised-button [disabled]="!kundeForm.valid" color="primary" (click)="save($event)">speichern</button>
+
+    <button mat-raised-button color="accent" (click)="cancel($event)">abbrechen</button>
+
+</div>

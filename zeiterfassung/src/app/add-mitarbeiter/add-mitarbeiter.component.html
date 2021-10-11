@@ -1,0 +1,32 @@
+<h1>Neuen Mitarbeiter anlegen</h1>
+
+<form class="example-form" [formGroup]="mitarbeiterForm">
+
+    <mat-form-field appearance="fill">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>login</mat-label>
+        <input matInput formControlName="login">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Passwort</mat-label>
+        <input type="password" matInput formControlName="password">
+    </mat-form-field>
+    <div>
+        <mat-radio-group aria-label="Select an option" formControlName="rolle">
+            <mat-radio-button value="2">standardrechte</mat-radio-button>
+            <mat-radio-button value="1">erweiterte Rechte</mat-radio-button>
+
+        </mat-radio-group>
+    </div>
+
+</form>
+
+<div class="buttonreihe">
+    <button mat-raised-button (click)="onSubmit()" [disabled]="!mitarbeiterForm.valid" color="primary">speichern</button>
+    <button mat-raised-button color="accent" ngclick="reset()">abbrechen</button>
+</div>

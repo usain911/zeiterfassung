@@ -1,0 +1,15 @@
+<h1>Mitarbeiter</h1>
+
+<div *ngIf="mitarbeiter; else elseBlock">
+    <mat-list>
+        <mat-list-item *ngFor="let ma of mitarbeiter | async">
+            <mat-icon mat-list-icon [routerLink]="['/mitarbeiter/', ma.idmitarbeiter]">person</mat-icon>
+            <div mat-line [routerLink]="['/mitarbeiter/', ma.idmitarbeiter]">{{ma.name}}
+
+            </div>
+        </mat-list-item>
+    </mat-list>
+
+</div>
+
+<ng-template #elseBlock>Content to render when condition is false.</ng-template>

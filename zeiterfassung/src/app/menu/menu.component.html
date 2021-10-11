@@ -1,0 +1,48 @@
+<div class="top">
+
+    <button mat-button [matMenuTriggerFor]="aboveMenu">ARBEITSZEIT</button>
+    <mat-menu #aboveMenu="matMenu" yPosition="below">
+        <button mat-menu-item routerLink="zeitEingabe">ZEIT EINGABE</button>
+        <button mat-menu-item routerLink="zeitAusgabe">ZEIT AUSGABE</button>
+    </mat-menu>
+
+    <button mat-button routerLink="dashboard"> <mat-icon>home</mat-icon></button>
+
+
+    <button mat-button [matMenuTriggerFor]="animals">VERWALTUNG</button>
+    <mat-menu #animals="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="kunden">KUNDEN</button>
+        <button mat-menu-item [matMenuTriggerFor]="mitarbeiter">MITARBEITER</button>
+    </mat-menu>
+
+    <mat-menu #kunden="matMenu">
+        <button mat-menu-item routerLink="neuerKunde" routerLinkActive="active">
+        <mat-icon>person_add</mat-icon>
+        <span>Neuer Kunde</span>
+      </button>
+
+        <button mat-menu-item routerLink="kundeliste" routerLinkActive="active">
+        <mat-icon>people</mat-icon>
+        <span>Kundenliste</span>
+      </button>
+    </mat-menu>
+
+    <mat-menu #mitarbeiter="matMenu">
+        <button mat-menu-item routerLink="neuerMitarbeiter" routerLinkActive="active">
+          <mat-icon>person_add</mat-icon>
+          <span>neuer Mitarbeiter</span>
+      </button>
+
+        <button mat-menu-item routerLink="mitarbeiterliste" routerLinkActive="active">
+        <mat-icon>people</mat-icon>
+        <span>Mitarbeiterliste</span>
+      </button>
+
+    </mat-menu>
+
+
+
+    <button mat-icon-button class="rechts" (click)="logout()">
+  <mat-icon>logout</mat-icon>
+  </button>
+</div>
